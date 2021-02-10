@@ -1,3 +1,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer utilities {
+  .dark-blue {
+    background-color: rgb(21, 35, 84);
+  }
+}
