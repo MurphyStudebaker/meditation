@@ -6,7 +6,8 @@ export default function Home() {
   const [ minutesLeft, setMinutes ] = useState(0);
   const [ secondsLeft, setSeconds ] =  useState(0);
   const [ meditating, setMeditating ] = useState(false)
-  
+  const [ showModal, setShowModal ] = useState(false)
+  const [ showTimeOptions, setShowOptions ] = useState(false)
   useEffect(()=>{
   let myInterval = setInterval(() => {
           if (secondsLeft > 0) {
@@ -73,7 +74,7 @@ export default function Home() {
 
         p.draw = () => {
           p.background(0.6, 0.75, 0.25);
-          let t = p.frameCount/100;
+          let t = p.frameCount/160;
           for (let i = n; i > 0; i--) {
             let alpha = 1 - (i / n);
             p.fill((alpha/5 + 0.75)%1, 1, 1, alpha);
@@ -94,31 +95,43 @@ export default function Home() {
   }
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen py-2">
+    <div className="flex flex-col items-center justify-center min-h-screen dark-blue">
       <Head>
         <title>Meditate</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className="dark-blue flex flex-col items-center justify-center flex-1 px-20 text-center">
+      <main className="flex flex-col items-center flex-1 px-20 text-center">
         { !meditating && 
           <div>
-            <h1>I want to meditate for <span className='font-bold'>{duration}</span> minutes.</h1>
-            <button onClick={e => startTimer()}className='px-3 py-2 border rounded'>Breathe</button>
+            <h1 className="text-white mt-12 text-4xl">I want to meditate for <span className='font-black text-white' onClick={e => setShowOptions(true)}>{duration}</span> minutes.</h1>
+            <ul className={`text-white ${showTimeOptions ? '' : 'hidden'}`}>
+              <li onClick={e => { setShowOptions(false); setDuration(3)} }>3</li>
+              <li onClick={e => { setShowOptions(false); setDuration(5)} }>5</li>
+              <li onClick={e => { setShowOptions(false); setDuration(10)} }>10</li>
+              <li onClick={e => { setShowOptions(false); setDuration(15)} }>15</li>
+            </ul>
+            <button onClick={e => startTimer()}className='px-3 py-2 mt-2 border rounded text-white'>Breathe</button>
+          </div>
+        }
+        {
+          showModal && 
+          <div>
+            <p>meditation advice pops up</p>
           </div>
         }
         { meditating && 
           <div>
+            <progress value={`${(duration*60) - (minutesLeft*60 + secondsLeft)}`} max={`${duration*60}`}/>
             <h1>{minutesLeft}:{secondsLeft}</h1>
             <div id="animation" className={meditating ? '' : 'hidden'} />
           </div>
           
         }
         </main>
-        <footer className='w-full flex flex-row justify-start'>
-          <p>Help Me Meditate</p>
-          <a href='http://www.buildwithpride.org'> Built with 🏳️‍🌈 </a>
-
+        <footer className={`w-full flex flex-row justify-start py-2 px-2${meditating ? 'hidden' : ''}`}>
+          <p className="text-white mr-2" onClick={e => setShowModal(!showModal)}>Help Me Meditate</p>
+          <a className="text-white" href='http://www.buildwithpride.org'> Built with 🏳️‍🌈 </a>
         </footer>
     </div>
   )
