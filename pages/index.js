@@ -6,8 +6,6 @@ export default function Home() {
   const [ minutesLeft, setMinutes ] = useState(0);
   const [ secondsLeft, setSeconds ] =  useState(0);
   const [ meditating, setMeditating ] = useState(false)
-  const [ width, setWidth ]  = useState(200)
-  const [ height, setHeight ] = useState(200)
   
   useEffect(()=>{
   let myInterval = setInterval(() => {
@@ -85,7 +83,7 @@ export default function Home() {
             blob(size, W/2, H/2, k, t - i * step, noisiness);
           }
         } 
-      })
+      }, 'animation')
     }
     }, [meditating])
 
@@ -110,7 +108,11 @@ export default function Home() {
           </div>
         }
         { meditating && 
-          <div>{minutesLeft}:{secondsLeft}</div>
+          <div>
+            <h1>{minutesLeft}:{secondsLeft}</h1>
+            <div id="animation" className={meditating ? '' : 'hidden'} />
+          </div>
+          
         }
         </main>
         <footer className='w-full flex flex-row justify-start'>
