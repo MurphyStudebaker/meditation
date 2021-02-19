@@ -28,6 +28,7 @@ Breathe, and enjoy each moment of this life. They’re too fleeting and few to w
 
             <h2 className='font-bold text-2xl pb-2 pt-6'>Who built this?</h2>
             <p><a className="font-bold" href="">@varungadh</a> and <a className="font-bold" href="https://www.murphystudebaker.com">@murphystudebaker</a></p>
+            <p>Generative Art adapted from <a className="font-bold" href="https://www.openprocessing.org/sketch/838545">Roni Kaufman</a></p>
             <a href='http://www.buildwithpride.org'> Built with 🏳️‍🌈 </a>
 
         </div>
