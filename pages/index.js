@@ -8,6 +8,7 @@ export default function Home() {
   const [ meditating, setMeditating ] = useState(false)
   const [ showModal, setShowModal ] = useState(false)
   const [ showTimeOptions, setShowOptions ] = useState(false)
+  
   useEffect(()=>{
   let myInterval = setInterval(() => {
           if (secondsLeft > 0) {
@@ -30,8 +31,8 @@ export default function Home() {
 
   useEffect(() => {
     const p5 = require("p5")
-    let windowWidth = window.innerWidth - 200|| 300
-    let windowHeight = window.innerHeight - 200 || 300
+    let windowWidth = window.innerWidth || 300
+    let windowHeight = window.innerHeight  || 300
 
     // figure out how to stop the animation once it is done
 
@@ -101,9 +102,9 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className="flex flex-col items-center flex-1 px-20 text-center">
+      <main className="flex flex-col items-center flex-1 w-full text-center">
         { !meditating && 
-          <div>
+          <div className="flex flex-col justify-center">
             <h1 className="text-white mt-12 text-4xl">I want to meditate for <span className='font-black text-white' onClick={e => setShowOptions(true)}>{duration}</span> minutes.</h1>
             <ul className={`text-white ${showTimeOptions ? '' : 'hidden'}`}>
               <li onClick={e => { setShowOptions(false); setDuration(3)} }>3</li>
@@ -122,14 +123,17 @@ export default function Home() {
         }
         { meditating && 
           <div>
-            <progress value={`${(duration*60) - (minutesLeft*60 + secondsLeft)}`} max={`${duration*60}`}/>
-            <h1>{minutesLeft}:{secondsLeft}</h1>
+            <div className="relative pt-1">
+              <div className="overflow-hidden h-2 mb-4 text-xs flex rounded bg-pink-200">
+                <div style={{ width: `${((duration*60) - ((minutesLeft*60) + secondsLeft)) / (duration*60)*100}%` }} className="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-pink-500"></div>
+              </div>
+            </div>
             <div id="animation" className={meditating ? '' : 'hidden'} />
           </div>
           
         }
         </main>
-        <footer className={`w-full flex flex-row justify-start py-2 px-2${meditating ? 'hidden' : ''}`}>
+        <footer className={`w-full flex flex-row justify-start py-2 px-2 ${meditating ? 'hidden' : ''}`}>
           <p className="text-white mr-2" onClick={e => setShowModal(!showModal)}>Help Me Meditate</p>
           <a className="text-white" href='http://www.buildwithpride.org'> Built with 🏳️‍🌈 </a>
         </footer>
