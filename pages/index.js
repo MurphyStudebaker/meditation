@@ -1,5 +1,6 @@
 import Head from 'next/head'
 import React, { useState, useEffect } from 'react'
+import Modal from '../components/modal';
 
 export default function Home() {
   const [duration, setDuration] = useState(1)
@@ -102,10 +103,10 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className="flex flex-col items-center flex-1 w-full text-center">
+      <main className="flex flex-col items-center justify-center flex-1 w-full text-center">
         { !meditating && 
           <div className="flex flex-col justify-center">
-            <h1 className="text-white mt-12 text-4xl">I want to meditate for <span className='font-black text-white' onClick={e => setShowOptions(true)}>{duration}</span> minutes.</h1>
+            <h1 className="text-white mt-12 text-6xl">I want to meditate for <span className='font-black text-white' onClick={e => setShowOptions(true)}>{duration}</span> minutes.</h1>
             <ul className={`text-white ${showTimeOptions ? '' : 'hidden'}`}>
               <li onClick={e => { setShowOptions(false); setDuration(3)} }>3</li>
               <li onClick={e => { setShowOptions(false); setDuration(5)} }>5</li>
@@ -117,9 +118,7 @@ export default function Home() {
         }
         {
           showModal && 
-          <div>
-            <p>meditation advice pops up</p>
-          </div>
+          <Modal />
         }
         { meditating && 
           <div>
@@ -133,9 +132,8 @@ export default function Home() {
           
         }
         </main>
-        <footer className={`w-full flex flex-row justify-start py-2 px-2 ${meditating ? 'hidden' : ''}`}>
-          <p className="text-white mr-2" onClick={e => setShowModal(!showModal)}>Help Me Meditate</p>
-          <a className="text-white" href='http://www.buildwithpride.org'> Built with 🏳️‍🌈 </a>
+        <footer className={`w-full py-4 px-4 ${meditating ? 'hidden' : ''}`}>
+          <svg className='w-8' onClick={e => setShowModal(!showModal)} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g fill='white'><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm0 18c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm1.5-6.5c-.2.9-.5 1.5-1.5 1.5s-1.5-.5-1.5-1.5 1.1-2.1 1.5-2.5c1-1 2-.9 2-2s-.9-2-2-2-2 1-2 2-1.3 1-1.3 1c-1 0-1.7-.9-1.4-1.9C7.8 6.5 9.1 5 12 5c4 0 5 3 5 5 0 2.1-3.2 2.2-3.5 3.5z"></path></g></svg>
         </footer>
     </div>
   )
