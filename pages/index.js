@@ -105,7 +105,7 @@ export default function Home() {
 
       <main className="flex flex-col items-center justify-center flex-1 w-full text-center">
         { !meditating && 
-          <div className="flex flex-col justify-center">
+          <div className="flex flex-col justify-center animated">
             <h1 className="text-white mt-12 text-6xl">I want to meditate for <span className='font-black text-white' onClick={e => setShowOptions(true)}>{duration}</span> minutes.</h1>
             <ul className={`text-white ${showTimeOptions ? '' : 'hidden'}`}>
               <li onClick={e => { setShowOptions(false); setDuration(3)} }>3</li>
@@ -114,6 +114,7 @@ export default function Home() {
               <li onClick={e => { setShowOptions(false); setDuration(15)} }>15</li>
             </ul>
             <button onClick={e => startTimer()}className='px-3 py-2 mt-2 border rounded text-white'>Breathe</button>
+          	<div onClick={e => setShowModal(false)} class={`main-modal fixed w-full h-100 inset-0 z-50 overflow-hidden ${showModal ? '' : 'hidden'}`} />
           </div>
         }
         {
@@ -127,7 +128,7 @@ export default function Home() {
                 <div style={{ width: `${((duration*60) - ((minutesLeft*60) + secondsLeft)) / (duration*60)*100}%` }} className="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-pink-500"></div>
               </div>
             </div>
-            <div id="animation" className={meditating ? '' : 'hidden'} />
+            <div id="animation" className={`${meditating ? '' : 'hidden'} animated fadeIn`} />
           </div>
           
         }
