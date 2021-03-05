@@ -1,11 +1,6 @@
-export default function Modal () {
+export default function Modal ({ open }) {
     return (
-        // <div class="main-modal fixed w-full h-100 inset-0 z-50 overflow-hidden flex justify-center items-center animated fadeIn faster"
-		// style="background: rgba(0,0,0,.7);">
-		// <div
-		// 	class="rounded-lg shadow-lg modal-container bg-white w-11/12 md:max-w-md mx-auto rounded shadow-lg z-50 overflow-y-auto">
-		// 	<div class="modal-content py-4 text-left px-6">
-        <div className='bg-white rounded-2xl fixed mx-4 my-4 p-16 p-16 text-left lg:mx-32 animated fadeIn'>
+        <div className={`bg-white rounded-2xl fixed mx-4 my-4 p-16 p-16 text-left lg:mx-32 animated ${open ? "fadeIn" : "fadeOut"}`}>
             <h2 className='font-bold text-2xl pb-2'>How do I meditate?</h2>
             <p>
                 {

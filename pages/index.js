@@ -4,9 +4,12 @@ import Modal from '../components/modal'
 import NumberSelect from '../components/numberSelect'
 import useSound from 'use-sound'
 import bellSfx from '../public/bell.mp3'
+import useStickyState from '../hooks/useStickyState'
+import useHasMounted from '../hooks/useHasMounted'
+import Start from '../components/startButton'
 
 export default function Home() {
-  const [duration, setDuration] = useState(1)
+  const [ duration, setDuration ] = useState(1, 'meditation-duration')
   const [ minutesLeft, setMinutes ] = useState(0);
   const [ secondsLeft, setSeconds ] =  useState(0);
   const [ meditating, setMeditating ] = useState(false)
@@ -37,8 +40,6 @@ export default function Home() {
     const p5 = require("p5")
     let windowWidth = window.innerWidth || 300
     let windowHeight = window.innerHeight  || 300
-
-    // figure out how to stop the animation once it is done
 
     if (meditating) {
       let sketch = new p5( p => {
@@ -114,19 +115,16 @@ export default function Home() {
       <main className="flex flex-col items-center justify-center flex-1 w-full text-center">
         { !meditating && 
           <div className="flex flex-col justify-center animated">
-            <h1 className="text-white mt-12 text-6xl">I want to meditate for 
-            <NumberSelect selected={duration} onChange={changeSelection}/>
-            <span className='font-black text-white' onClick={e => setShowOptions(true)}>{duration}</span> 
-            minutes.</h1>
-
-            <button onClick={e => startTimer()}className='px-3 py-2 mt-2 border rounded text-white'>Breathe</button>
+            <h1 className="text-white mt-12 text-6xl animated fadeIn">
+              I want to meditate for 
+              <NumberSelect selected={duration} onChange={changeSelection}/>
+              minutes.
+            </h1>
+            <Start start={startTimer} />
           	<div onClick={e => setShowModal(false)} class={`main-modal fixed w-full h-100 inset-0 z-50 overflow-hidden ${showModal ? '' : 'hidden'}`} />
           </div>
         }
-        {
-          showModal && 
-          <Modal />
-        }
+        { showModal && <Modal open={showModal}/> }
         { meditating && 
           <div>
             <div className="relative pt-1">

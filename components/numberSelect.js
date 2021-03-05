@@ -2,15 +2,16 @@ import { useState } from "react"
 
 export default function NumberSelect ({ selected, onChange }) {
     const [ showTimeOptions, setShowOptions ] = useState(false)
+    const timeOptions = [1,3,5,10,15]
 
     return (
-        <div>
-            <h1>{selected}</h1>
-            <ul className={`text-white ${showTimeOptions ? '' : 'hidden'}`}>
-                <li onClick={e => { setShowOptions(false); onChange(3)} }>3</li>
-                <li onClick={e => { setShowOptions(false); onChange(5)} }>5</li>
-                <li onClick={e => { setShowOptions(false); onChange(10)} }>10</li>
-                <li onClick={e => { setShowOptions(false); onChange(15)} }>15</li>
+        <div className='flex justify-center items-center'>
+            <ul className="text-white flex items-center text-center fadeIn">
+                {
+                    timeOptions.map(o => (
+                        <li className={`${!showTimeOptions && o !== selected ? "hidden fadeOut" : "fadeIn"} px-4 py-2 mx-2 text-center cursor-pointer animated ${selected === o ? "font-bold" : "text-2xl fadeIn"}`} onClick={e => { setShowOptions(!showTimeOptions); onChange(o)} }>{o}</li>
+                    ))
+                }
             </ul>
         </div>
         
