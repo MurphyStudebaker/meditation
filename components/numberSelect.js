@@ -6,10 +6,10 @@ export default function NumberSelect ({ selected, onChange }) {
 
     return (
         <div className='flex justify-center items-center'>
-            <ul className="text-white flex items-center text-center fadeIn">
+            <ul className="flex items-center text-center fadeIn">
                 {
                     timeOptions.map(o => (
-                        <li className={`${!showTimeOptions && o !== selected ? "hidden fadeOut" : "fadeIn"} px-4 py-2 mx-2 text-center cursor-pointer animated ${selected === o ? "font-bold" : "text-2xl fadeIn"}`} onClick={e => { setShowOptions(!showTimeOptions); onChange(o)} }>{o}</li>
+                        <li className={`${!showTimeOptions && o !== selected ? "hidden fadeOut" : "fadeIn"} px-4 py-2 mx-2 text-center cursor-pointer animated ${selected === o ? "font-bold text-white" : "text-2xl fadeIn text-gray-300"}`} onClick={e => { setShowOptions(!showTimeOptions); onChange(o)} }>{o}</li>
                     ))
                 }
             </ul>
