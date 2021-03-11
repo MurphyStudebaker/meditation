@@ -2,8 +2,8 @@ import Head from 'next/head'
 import React, { useState, useEffect } from 'react'
 import Modal from '../components/modal'
 import NumberSelect from '../components/numberSelect'
-import useSound from 'use-sound'
-import bellSfx from '../public/bell.mp3'
+// import useSound from 'use-sound'
+// import bellSfx from '../public/bell.mp3'
 import Start from '../components/startButton'
 import Visualizer from '../components/visualizer'
 import ProgressBar from '../components/progress'
@@ -15,7 +15,7 @@ export default function Home() {
   const [ secondsLeft, setSeconds ] =  useState(0);
   const [ meditating, setMeditating ] = useState(false)
   const [ showModal, setShowModal ] = useState(false)
-  const [play] = useSound(bellSfx);
+  // const [play] = useSound(bellSfx);
 
   useEffect(()=>{
     let myInterval = setInterval(() => {
@@ -34,7 +34,7 @@ export default function Home() {
   const startTimer = () => {
     setSeconds(duration * 60)
     setMeditating(true)
-    play() // plays sounds
+    // play() // plays sounds
   }
 
   const changeSelection = (time) => {
