@@ -9,7 +9,7 @@ export default function Visualizer({ meditating }) {
         if (meditating) {
           let sketch = new p5( p => {
             let W = windowWidth
-            let H = windowHeight - 60
+            let H = windowHeight - 100
             let kMax = 5; // maximal value for the parameter "k" of the blobs
             let step = 0.01; // difference in time between two consecutive blobs
             let n = 100; // total number of blobs
@@ -63,6 +63,6 @@ export default function Visualizer({ meditating }) {
         }, [meditating])
 
     return (
-        <div id="animation" className={`${meditating ? '' : 'hidden'} animated fadeIn`} />
+        <div id="animation" className={`${meditating ? '' : 'opacity-0'} h-1/6`} />
     )
 }

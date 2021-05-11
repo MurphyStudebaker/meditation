@@ -16,6 +16,7 @@ export default function Home() {
   const [ secondsLeft, setSeconds ] =  useState(0);
   const [ meditating, setMeditating ] = useState(false)
   const [ showModal, setShowModal ] = useState(false)
+  const [ showVisualizer, setShowVisualizer ] = useState(false)
   // const [play] = useSound(bellSfx);
 
   useEffect(()=>{
@@ -24,6 +25,7 @@ export default function Home() {
           setSeconds(secondsLeft - 1);
       } else {
         clearInterval(myInterval)
+        setShowVisualizer(false)
         setMeditating(false)
       }
     }, 1000)
@@ -35,6 +37,7 @@ export default function Home() {
   const startTimer = () => {
     setSeconds(duration * 60)
     setMeditating(true)
+    setTimeout(setShowVisualizer(true), 1200)
     // play() // plays sounds
   }
 
@@ -54,7 +57,7 @@ export default function Home() {
       </Head>
       <Header />
 
-      <div className="w-full md:w-1/2 mx-auto mt-24 flex-1 px-12">
+      <div className="w-full md:w-1/2 mx-auto flex-1 px-12">
       {/* Displays when not meditating */}
       <Transition show={!meditating}>
         <Transition.Child
@@ -65,6 +68,7 @@ export default function Home() {
           leave="transition-opacity ease-linear duration-1000"
           leaveFrom="opacity-100"
           leaveTo="opacity-0">
+            <div className="h-24"></div>
         <h1 className="text-gray-300 w-96 text-left text-6xl">
           I want to meditate for 
           <NumberSelect selected={duration} onChange={changeSelection}/>
@@ -75,6 +79,7 @@ export default function Home() {
       </Transition>
       </div>
 
+      { showVisualizer && <Visualizer meditating={showVisualizer}/>}
 
       <div className="w-screen">
         <Transition
