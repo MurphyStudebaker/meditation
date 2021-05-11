@@ -8,6 +8,7 @@
     "start": "next start"
   },
   "dependencies": {
+    "@headlessui/react": "^1.2.0",
     "autoprefixer": "^10.0.4",
     "file-loader": "^6.2.0",
     "next": "latest",

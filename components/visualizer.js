@@ -9,7 +9,7 @@ export default function Visualizer({ meditating }) {
         if (meditating) {
           let sketch = new p5( p => {
             let W = windowWidth
-            let H = windowHeight
+            let H = windowHeight - 60
             let kMax = 5; // maximal value for the parameter "k" of the blobs
             let step = 0.01; // difference in time between two consecutive blobs
             let n = 100; // total number of blobs
@@ -46,13 +46,16 @@ export default function Visualizer({ meditating }) {
             p.draw = () => {
               p.background(0.6, 0.75, 0.25);
               let t = p.frameCount/160;
-              for (let i = n; i > 0; i--) {
-                let alpha = 1 - (i / n);
-                p.fill((alpha/5 + 0.75)%1, 1, 1, alpha);
-                let size = radius + i * inter;
-                let k = kMax * p.sqrt(i/n);
-                let noisiness = maxNoise * (i / n);
-                blob(size, W/2, H/2, k, t - i * step, noisiness);
+
+              if (p.frameCount > 90) {
+                for (let i = n; i > 0; i--) {
+                  let alpha = 1 - (i / n);
+                  p.fill((alpha/5 + 0.75)%1, 1, 1, alpha);
+                  let size = radius + i * inter;
+                  let k = kMax * p.sqrt(i/n);
+                  let noisiness = maxNoise * (i / n);
+                  blob(size, W/2, H/2, k, t - i * step, noisiness);
+                }
               }
             } 
           }, 'animation')
