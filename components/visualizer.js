@@ -49,8 +49,8 @@ export default function Visualizer({ meditating }) {
 
               if (p.frameCount > 90) {
                 for (let i = n; i > 0; i--) {
-                  let alpha = 1 - (i / n);
-                  p.fill((alpha/5 + 0.75)%1, 1, 1, alpha);
+                  let hue = 32 - (i / n);
+                  p.fill((hue/5 + 0.75)%1, 1, 1, 1 - (i / n));
                   let size = radius + i * inter;
                   let k = kMax * p.sqrt(i/n);
                   let noisiness = maxNoise * (i / n);

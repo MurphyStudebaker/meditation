@@ -53,6 +53,8 @@ export default function Home() {
     <div className="flex flex-col items-center justify-between min-h-screen dark-blue">
       <Head>
         <title>Inhale</title>
+        <link rel="preconnect" href="https://fonts.gstatic.com"/>
+        <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@600;700&display=swap" rel="stylesheet"/>
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Header />
@@ -68,8 +70,8 @@ export default function Home() {
           leave="transition-opacity ease-linear duration-1000"
           leaveFrom="opacity-100"
           leaveTo="opacity-0">
-            <div className="h-24"></div>
-        <h1 className="text-gray-300 w-96 text-left text-6xl">
+          <div id="spacer" className="h-24 md:h-40"></div>
+        <h1 className="text-gray-300 text-source-sans w-96 text-left text-6xl">
           I want to meditate for 
           <NumberSelect selected={duration} onChange={changeSelection}/>
           minutes.
