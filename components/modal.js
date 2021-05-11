@@ -24,7 +24,7 @@ const solutions = [
 
 export default function MeditateModal() {
   return (
-    <div className="w-full max-w-sm px-4 fixed top-16">
+    <div className="w-full max-w-sm px-4 fixed">
       <Popover className="relative">
         {({ open }) => (
           <>
@@ -37,7 +37,7 @@ export default function MeditateModal() {
             </Popover.Button>
             <Popover.Overlay
             className={`${
-              open ? 'opacity-30 fixed inset-0' : 'opacity-0'
+              open ? 'opacity-40 fixed inset-0' : 'opacity-0'
             } bg-black`}
           />
             <Transition
@@ -49,18 +49,14 @@ export default function MeditateModal() {
               leaveFrom="opacity-100 translate-y-0"
               leaveTo="opacity-0 translate-y-1"
             >
-              <Popover.Panel className="absolute z-10 w-screen max-w-sm px-4 mt-3 transform -translate-x-1/2 left-1/2 sm:px-0 lg:max-w-3xl">
+              <Popover.Panel className="absolute z-10 w-screen max-w-sm px-4 mt-3 sm:px-0 lg:max-w-3xl">
                 <div className="overflow-hidden">
-                  <p className="text-white relative flex flex-col gap-8">
-                  Breathe.
-
-If you feel overwhelmed, breathe. It will calm you and release the tensions.
-
-If you are worried about something coming up, or caught up in something that already happened, breathe. It will bring you back to the present.
-
-If you are moving too fast, breathe. It will remind you to slow down, and enjoy life more.
-
-Breathe, and enjoy each moment of this life. They’re too fleeting and few to waste.
+                  <p className="text-white relative max-w-sm">
+                  1. Sit or lie down in a comfortable position. <br />
+                  2. Close your eyes or let your vision slowly blur. <br />
+                  3. Breathe. Focus on the differences in each inhale and exhale. <br />
+                  4. When your mind wanders, come back to the breathe. <br />
+                  5. Enjoy this time you've taken for yourself. You're doing great :)
                   </p>
                 </div>
               </Popover.Panel>

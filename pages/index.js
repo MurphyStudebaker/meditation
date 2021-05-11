@@ -47,14 +47,14 @@ export default function Home() {
   }
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen dark-blue">
+    <div className="flex flex-col items-center justify-between min-h-screen dark-blue">
       <Head>
         <title>Inhale</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Header />
 
-      <div className="flex flex-col items-center justify-center flex-1 w-full">
+      <div className="w-full md:w-1/2 mx-auto mt-24 flex-1 px-12">
       {/* Displays when not meditating */}
       <Transition show={!meditating}>
         <Transition.Child
@@ -65,7 +65,7 @@ export default function Home() {
           leave="transition-opacity ease-linear duration-1000"
           leaveFrom="opacity-100"
           leaveTo="opacity-0">
-        <h1 className="text-gray-300 text-left text-6xl">
+        <h1 className="text-gray-300 w-96 text-left text-6xl">
           I want to meditate for 
           <NumberSelect selected={duration} onChange={changeSelection}/>
           minutes.
@@ -73,34 +73,22 @@ export default function Home() {
         <Start start={startTimer} />
         </Transition.Child>
       </Transition>
+      </div>
 
-      <Transition show={meditating}
+
+      <div className="w-screen">
+        <Transition
+          show={meditating}
           appear={false}
-          enter="transition-opacity ease-linear duration-1000"
+          enter="delay-1000 transition-opacity ease-linear duration-1000"
           enterFrom="opacity-0"
           enterTo="opacity-100"
           leave="transition-opacity ease-linear duration-1000"
           leaveFrom="opacity-100"
           leaveTo="opacity-0">
-        <Visualizer meditating={meditating} />
         <ProgressBar duration={duration} secondsLeft={secondsLeft} />
-      </Transition>
+        </Transition>
       </div>
-{/* 
-
-      {!meditating 
-      && <Header triggerModal={triggerModal} />}
-      <main className="flex flex-col items-center justify-center flex-1 w-full text-center">
-        { showModal && <Modal open={showModal}/> }
-        
-        { meditating && 
-          <div>
-            <Visualizer meditating={meditating} />
-            <ProgressBar duration={duration} secondsLeft={secondsLeft} />
-          </div>
-          
-        } */}
-        {/* </main> */}
     </div>
   )
 }
