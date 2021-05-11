@@ -53,10 +53,9 @@ export default function MeditateModal() {
                 <div className="overflow-hidden">
                   <p className="text-white relative max-w-sm">
                   1. Sit or lie down in a comfortable position. <br />
-                  2. Close your eyes or let your vision slowly blur. <br />
-                  3. Breathe. Focus on the differences in each inhale and exhale. <br />
-                  4. When your mind wanders, come back to the breathe. <br />
-                  5. Enjoy this time you've taken for yourself. You're doing great :)
+                  2. Focus on the visualization and let your vision slowly blur, or close your eyes. <br />
+                  3. Breathe. <br />
+                  4. When your mind wanders, come back to the breath. You're doing great :)
                   </p>
                 </div>
               </Popover.Panel>
