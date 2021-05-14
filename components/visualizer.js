@@ -46,23 +46,21 @@ export default function Visualizer({ meditating }) {
             p.draw = () => {
               p.background(0.6, 0.75, 0.25);
               let t = p.frameCount/160;
-
-              if (p.frameCount > 90) {
                 for (let i = n; i > 0; i--) {
-                  let hue = 32 - (i / n);
-                  p.fill((hue/5 + 0.75)%1, 1, 1, 1 - (i / n));
+                  let opacity = 1 - ((i / n)+.2)
+                  let hue = 4 - (i / n);
+                  p.fill((hue/5 + 0.75)%1, 1, 1, opacity);
                   let size = radius + i * inter;
                   let k = kMax * p.sqrt(i/n);
                   let noisiness = maxNoise * (i / n);
                   blob(size, W/2, H/2, k, t - i * step, noisiness);
                 }
-              }
             } 
           }, 'animation')
         }
         }, [meditating])
 
     return (
-        <div id="animation" className={`${meditating ? '' : 'opacity-0'} h-1/6`} />
+        <div id="animation" className="h-1/6" />
     )
 }

@@ -4,8 +4,8 @@ import { Transition } from '@headlessui/react'
 
 import Modal from '../components/modal'
 import NumberSelect from '../components/numberSelect'
-// import useSound from 'use-sound'
-// import bellSfx from '../public/bell.mp3'
+import useSound from 'use-sound'
+import bellSfx from '../public/bell.mp3'
 import Start from '../components/startButton'
 import Visualizer from '../components/visualizer'
 import ProgressBar from '../components/progress'
@@ -17,7 +17,7 @@ export default function Home() {
   const [ meditating, setMeditating ] = useState(false)
   const [ showModal, setShowModal ] = useState(false)
   const [ showVisualizer, setShowVisualizer ] = useState(false)
-  // const [play] = useSound(bellSfx);
+  const [play] = useSound(bellSfx);
 
   useEffect(()=>{
     let myInterval = setInterval(() => {
@@ -26,7 +26,7 @@ export default function Home() {
       } else {
         clearInterval(myInterval)
         setShowVisualizer(false)
-        setMeditating(false)
+        setTimeout(setMeditating(false), 1000)
       }
     }, 1000)
     return () => {
@@ -37,8 +37,8 @@ export default function Home() {
   const startTimer = () => {
     setSeconds(duration * 60)
     setMeditating(true)
-    setTimeout(setShowVisualizer(true), 1200)
-    // play() // plays sounds
+    setTimeout(setShowVisualizer(true), 4800)
+    play() // plays sounds
   }
 
   const changeSelection = (time) => {
@@ -63,7 +63,7 @@ export default function Home() {
       {/* Displays when not meditating */}
       <Transition show={!meditating}>
         <Transition.Child
-          appear={true}
+          appear="true"
           enter="transition-opacity ease-linear duration-1000"
           enterFrom="opacity-0"
           enterTo="opacity-100"
@@ -81,12 +81,22 @@ export default function Home() {
       </Transition>
       </div>
 
-      { showVisualizer && <Visualizer meditating={showVisualizer}/>}
+      <Transition
+          show={showVisualizer}
+          appear="false"
+          enter="delay-1000 transition-opacity ease-linear duration-1000"
+          enterFrom="opacity-0"
+          enterTo="opacity-100"
+          leave="transition-opacity ease-linear duration-1000"
+          leaveFrom="opacity-100"
+          leaveTo="opacity-0">
+        <Visualizer meditating={showVisualizer}/>
+      </Transition>
 
       <div className="w-screen">
         <Transition
           show={meditating}
-          appear={false}
+          appear="false"
           enter="delay-1000 transition-opacity ease-linear duration-1000"
           enterFrom="opacity-0"
           enterTo="opacity-100"

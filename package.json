@@ -10,14 +10,16 @@
   "dependencies": {
     "@headlessui/react": "^1.2.0",
     "autoprefixer": "^10.0.4",
-    "file-loader": "^6.2.0",
     "next": "latest",
     "p5": "^1.2.0",
     "postcss": "^8.1.10",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "tailwindcss": "^2.0.2",
-    "url-loader": "^4.1.1",
-    "use-sound": "^2.0.1"
+    "use-sound": "^2.2.0"
+  },
+  "devDependencies": {
+    "file-loader": "^6.2.0",
+    "url-loader": "^4.1.1"
   }
 }
