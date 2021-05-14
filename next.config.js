@@ -1,4 +1,5 @@
 module.exports = {
+    target: "serverless",
     webpack(config, options) {
       const { isServer } = options;
       config.module.rules.push({
