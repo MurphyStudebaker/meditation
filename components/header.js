@@ -1,8 +1,16 @@
 import MeditateModal from './modal.js'
-export default function Header () {
+import PreferencesModal from './preferences'
+export default function Header ({ bell, setBell }) {
     return (
-        <header className="text-source-sans flex justify-between w-screen p-4">
-        <MeditateModal />
+        <header className="relative text-source-sans flex flex-row justify-between min-w-full">
+          <div>
+          <MeditateModal />
+
+          </div>
+          <div>
+          <PreferencesModal bell={bell} setBell={setBell} />
+
+          </div>
       </header>
     )
 }

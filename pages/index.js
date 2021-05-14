@@ -18,6 +18,7 @@ export default function Home() {
   const [ showModal, setShowModal ] = useState(false)
   const [ showVisualizer, setShowVisualizer ] = useState(false)
   const [play] = useSound(bellSfx);
+  const [bell, setBell] = useState(true)
 
   useEffect(()=>{
     let myInterval = setInterval(() => {
@@ -38,7 +39,7 @@ export default function Home() {
     setSeconds(duration * 60)
     setMeditating(true)
     setTimeout(setShowVisualizer(true), 4800)
-    play() // plays sounds
+    if (bell) { play() } // plays sounds
   }
 
   const changeSelection = (time) => {
@@ -50,14 +51,14 @@ export default function Home() {
   }
 
   return (
-    <div className="flex flex-col items-center justify-between min-h-screen dark-blue">
+    <div className="fixed flex flex-col items-center justify-between min-h-screen min-w-screen dark-blue">
       <Head>
         <title>Inhale</title>
         <link rel="preconnect" href="https://fonts.gstatic.com"/>
         <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@600;700&display=swap" rel="stylesheet"/>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Header />
+      <Header bell={bell} setBell={setBell} />
 
       <div className="w-full md:w-1/2 mx-auto flex-1 px-12">
       {/* Displays when not meditating */}
