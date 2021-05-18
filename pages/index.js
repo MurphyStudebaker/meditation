@@ -2,7 +2,6 @@ import Head from 'next/head'
 import React, { useState, useEffect } from 'react'
 import { Transition } from '@headlessui/react'
 
-import Modal from '../components/modal'
 import NumberSelect from '../components/numberSelect'
 import useSound from 'use-sound'
 import bellSfx from '../public/bell.mp3'
@@ -27,7 +26,7 @@ export default function Home() {
       } else {
         clearInterval(myInterval)
         setShowVisualizer(false)
-        setTimeout(setMeditating(false), 1000)
+        setTimeout(setMeditating(false), 4800)
       }
     }, 1000)
     return () => {
@@ -49,6 +48,12 @@ export default function Home() {
   const triggerModal = () => {
     setShowModal(!showModal)
   }
+
+  useEffect(function() {
+    console.log(window.localStorage);
+    window.localStorage.setItem('meditation-duration', duration)
+    window.localStorage.setItem('wants-bell-sound', bell)
+  },[duration, bell]);
 
   return (
     <div className="fixed flex flex-col items-center justify-between min-h-screen min-w-screen dark-blue">
@@ -107,6 +112,15 @@ export default function Home() {
         <ProgressBar duration={duration} secondsLeft={secondsLeft} />
         </Transition>
       </div>
+
+      {!meditating && <div>
+        <footer className="p-4 text-left text-gray-500 text-source-sans w-screen">
+          <p>
+            This site is <a href='https://github.com/MurphyStudebaker/meditation' className="hover:underline">open source</a>. 
+          <a href='http://www.buildwithpride.org' className="hover:underline"> Built with 🏳️‍🌈 </a>
+          </p>
+        </footer>
+      </div>}
     </div>
   )
 }
