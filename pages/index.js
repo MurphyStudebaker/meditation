@@ -1,23 +1,27 @@
 import Head from 'next/head'
 import React, { useState, useEffect } from 'react'
 import { Transition } from '@headlessui/react'
+import { useStickyState } from '../hooks/useStickyState'
 
 import NumberSelect from '../components/numberSelect'
 import useSound from 'use-sound'
 import bellSfx from '../public/bell.mp3'
+import forestSfx from '../public/forest.mp3'
 import Start from '../components/startButton'
 import Visualizer from '../components/visualizer'
 import ProgressBar from '../components/progress'
 import Header from '../components/header'
 
 export default function Home() {
-  const [ duration, setDuration ] = useState(1)
+  const [ duration, setDuration ] = useStickyState(3, 'meditation-duration')
   const [ secondsLeft, setSeconds ] =  useState(0);
   const [ meditating, setMeditating ] = useState(false)
   const [ showModal, setShowModal ] = useState(false)
   const [ showVisualizer, setShowVisualizer ] = useState(false)
-  const [play] = useSound(bellSfx);
-  const [bell, setBell] = useState(true)
+  const [playBell] = useSound(bellSfx);
+  const [bell, setBell] = useStickyState(true, 'meditation-bell-on')
+  const [playAmbience, { stop }] = useSound(forestSfx);
+  const [ambience, setAmbience] = useStickyState(true, 'meditation-ambience-on')
 
   useEffect(()=>{
     let myInterval = setInterval(() => {
@@ -26,6 +30,7 @@ export default function Home() {
       } else {
         clearInterval(myInterval)
         setShowVisualizer(false)
+        stop()
         setTimeout(setMeditating(false), 4800)
       }
     }, 1000)
@@ -38,22 +43,13 @@ export default function Home() {
     setSeconds(duration * 60)
     setMeditating(true)
     setTimeout(setShowVisualizer(true), 4800)
-    if (bell) { play() } // plays sounds
+    if (bell) { playBell() }
+    if (ambience) { playAmbience() }
   }
 
   const changeSelection = (time) => {
     setDuration(time)
   }
-
-  const triggerModal = () => {
-    setShowModal(!showModal)
-  }
-
-  useEffect(function() {
-    console.log(window.localStorage);
-    window.localStorage.setItem('meditation-duration', duration)
-    window.localStorage.setItem('wants-bell-sound', bell)
-  },[duration, bell]);
 
   return (
     <div className="fixed flex flex-col items-center justify-between min-h-screen min-w-screen dark-blue">
@@ -63,7 +59,7 @@ export default function Home() {
         <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@600;700&display=swap" rel="stylesheet"/>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Header bell={bell} setBell={setBell} />
+      <Header bell={bell} setBell={setBell} ambience={ambience} setAmbience={setAmbience} />
 
       <div className="w-full md:w-1/2 mx-auto flex-1 px-12">
       {/* Displays when not meditating */}

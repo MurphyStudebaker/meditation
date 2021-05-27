@@ -1,8 +1,7 @@
 import { Popover, Transition, Switch } from '@headlessui/react'
 import { Fragment, useState } from 'react'
 
-export default function PreferencesModal({ bell, setBell }) {
-
+export default function PreferencesModal({ bell, setBell, ambience, setAmbience }) {
   return (
     <div className="p-4">
       <Popover className="relative w-44 text-right">
@@ -32,6 +31,7 @@ export default function PreferencesModal({ bell, setBell }) {
               <Popover.Panel className="absolute z-10 px-4 mt-3 sm:px-0">
                 <div className="overflow-hidden text-white">
                     <p onClick={() => setBell(!bell)}>Starting Bell {bell ? '[ON]' : '[OFF]'}</p>
+                    <p onClick={() => setAmbience(!ambience)}>Background Ambience {ambience ? '[ON]' : '[OFF]'}</p>
                 </div>
               </Popover.Panel>
             </Transition>
