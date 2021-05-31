@@ -1,21 +1,6 @@
-# Next.js + Tailwind CSS Example
+# Inhale Meditation Timer
 
-This example shows how to use [Tailwind CSS](https://tailwindcss.com/) (v2) with Next.js. It follows the steps outlined in the official [Tailwind docs](https://tailwindcss.com/docs/guides/nextjs).
+Hello friend, this is the code repository for [Inhale](inhale.netlify.app), a simple timer for unguided meditations. Our goal is to create a delightful tool you'll happily use at work, on the go, or in your home to add minfulness to every part of your day. We welcome feature requests, grammar corrections, and contributions of any kind. 
 
-## Deploy your own
-
-Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=next-example):
-
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https://github.com/vercel/next.js/tree/canary/examples/with-tailwindcss&project-name=with-tailwindcss&repository-name=with-tailwindcss)
-
-## How to use
-
-Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with [npm](https://docs.npmjs.com/cli/init) or [Yarn](https://yarnpkg.com/lang/en/docs/cli/create/) to bootstrap the example:
-
-```bash
-npx create-next-app --example with-tailwindcss with-tailwindcss-app
-# or
-yarn create next-app --example with-tailwindcss with-tailwindcss-app
-```
-
-Deploy it to the cloud with [Vercel](https://vercel.com/new?utm_source=github&utm_medium=readme&utm_campaign=next-example) ([Documentation](https://nextjs.org/docs/deployment)).
+Built with NextJS + TailwindCSS + p5.js, and deployed on Netlify. 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/209d0678-f940-42b6-aa91-9ed7c6e1f499/deploy-status)](https://app.netlify.com/sites/inhale/deploys)
