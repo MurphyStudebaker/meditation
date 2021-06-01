@@ -8,8 +8,8 @@ export default function NumberSelect ({ selected, onChange }) {
         <div className='flex justify-start items-center'>
             <ul className="flex items-center text-center">
                 {
-                    timeOptions.map(o => (
-                        <li className={`transition hover:text-white duration-300 px-4 py-2 mx-2 text-center cursor-pointer rounded-2xl ${selected === o ? "font-bold text-white bg-transparent" : "text-2xl text-gray-300 bg-gray-900"}`} onClick={e => { setShowOptions(!showTimeOptions); onChange(o)} }>{o}</li>
+                    timeOptions.map((o, i) => (
+                        <li key={i} className={`transition hover:text-white duration-300 px-4 py-2 mx-2 text-center cursor-pointer rounded-2xl ${selected === o ? "font-bold text-white bg-transparent" : "text-2xl text-gray-300 bg-gray-900"}`} onClick={e => { setShowOptions(!showTimeOptions); onChange(o)} }>{o}</li>
                     ))
                 }
             </ul>

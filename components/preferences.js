@@ -31,7 +31,7 @@ export default function PreferencesModal({ bell, setBell, ambience, setAmbience 
               <Popover.Panel className="absolute z-10 px-4 mt-3 sm:px-0">
                 <div className="overflow-hidden text-white">
                     <p onClick={() => setBell(!bell)}>Starting Bell {bell ? '[ON]' : '[OFF]'}</p>
-                    <p onClick={() => setAmbience(!ambience)}>Background Ambience {ambience ? '[ON]' : '[OFF]'}</p>
+                    {/* <p onClick={() => setAmbience(!ambience)}>Background Ambience {ambience ? '[ON]' : '[OFF]'}</p> */}
                 </div>
               </Popover.Panel>
             </Transition>
