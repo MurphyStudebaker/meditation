@@ -6,7 +6,6 @@ import { useStickyState } from '../hooks/useStickyState'
 import NumberSelect from '../components/numberSelect'
 import useSound from 'use-sound'
 import bellSfx from '../public/bell.mp3'
-// import forestSfx from '../public/forest.mp3'
 import Start from '../components/startButton'
 import Visualizer from '../components/visualizer'
 import ProgressBar from '../components/progress'
@@ -20,11 +19,14 @@ export default function Home() {
   const [ showVisualizer, setShowVisualizer ] = useState(false)
   const [playBell] = useSound(bellSfx);
   const [bell, setBell] = useStickyState(true, 'meditation-bell-on')
-  // const [playAmbience, { stop }] = useSound(forestSfx);
   const [ambience, setAmbience] = useStickyState(true, 'meditation-ambience-on')
 
   useEffect(()=>{
     let myInterval = setInterval(() => {
+      if (secondsLeft === 30) {
+        // wind down bell at 30 seconds remaining
+        if (bell) { playBell() }
+      }
       if (secondsLeft > 0) {
           setSeconds(secondsLeft - 1);
       } else {
@@ -44,7 +46,6 @@ export default function Home() {
     setMeditating(true)
     setTimeout(setShowVisualizer(true), 4800)
     if (bell) { playBell() }
-    // if (ambience) { playAmbience() }
   }
 
   const changeSelection = (time) => {
