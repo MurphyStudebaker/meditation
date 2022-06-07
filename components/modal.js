@@ -12,7 +12,7 @@ export default function MeditateModal() {
                 ${open ? 'text-white' : 'text-gray-300'}
                 hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75`}
             >
-              <span>how we meditate</span>
+              how we meditate
             </Popover.Button>
             <Popover.Overlay
             className={`${

@@ -1,56 +1,7 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+html, body {
+    height: 100%;
+}
 
-@layer utilities {
-  .dark-blue {
-    background-color: #14233e;
-  }
-  .text-dark-blue {
-    color: #14233e;
-  }
-  .animated {
-    -webkit-animation-duration: 1.5s;
-    animation-duration: 1.5s;
-    -webkit-animation-fill-mode: both;
-    animation-fill-mode: both;
-  }
-  .text-source-sans {
-    font-family: "Source Sans Pro", sans-serif;
-  }
-
-  .animated.faster {
-    -webkit-animation-duration: 500ms;
-    animation-duration: 500ms;
-  }
-
-  .fadeIn {
-    -webkit-animation-name: fadeIn;
-    animation-name: fadeIn;
-  }
-
-  .fadeOut {
-    -webkit-animation-name: fadeOut;
-    animation-name: fadeOut;
-  }
-
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-    }
-
-    to {
-      opacity: 1;
-    }
-  }
-
-  @keyframes fadeOut {
-    from {
-      opacity: 1;
-    }
-
-    to {
-      opacity: 0;
-    }
-  }
+#__next {
+    height: 100%;
 }

@@ -1,4 +1,6 @@
 import Head from 'next/head'
+import Link from "next/link"
+import styled from "styled-components"
 import React, { useState, useEffect } from 'react'
 import { Transition } from '@headlessui/react'
 import { useStickyState } from '../hooks/useStickyState'
@@ -57,7 +59,7 @@ export default function Home() {
   }, [])
 
   return (
-    <div className="fixed flex flex-col items-center justify-between min-h-screen min-w-screen dark-blue">
+    <PageWrapper>
       <Head>
         <title>Inhale</title>
         <link rel="preconnect" href="https://fonts.gstatic.com"/>
@@ -66,7 +68,7 @@ export default function Home() {
       </Head>
       <Header bell={bell} setBell={setBell} ambience={ambience} setAmbience={setAmbience} />
 
-      <div className="w-full md:w-1/2 mx-auto flex-1 px-12">
+      <PageContent>
       {/* Displays when not meditating */}
       <Transition show={!meditating}>
         <Transition.Child
@@ -86,17 +88,14 @@ export default function Home() {
         <Start start={startTimer} />
         </Transition.Child>
       </Transition>
-      </div>
-
+      </PageContent>
+{/* 
       <Transition
           show={showVisualizer}
           appear="false"
           enter="delay-1000 transition-opacity ease-linear duration-1000"
           enterFrom="opacity-0"
-          enterTo="opacity-100"
-          leave="transition-opacity ease-linear duration-1000"
-          leaveFrom="opacity-100"
-          leaveTo="opacity-0">
+          enterTo="opacity-100">
         <Visualizer meditating={showVisualizer}/>
       </Transition>
 
@@ -106,13 +105,10 @@ export default function Home() {
           appear="false"
           enter="delay-1000 transition-opacity ease-linear duration-1000"
           enterFrom="opacity-0"
-          enterTo="opacity-100"
-          leave="transition-opacity ease-linear duration-1000"
-          leaveFrom="opacity-100"
-          leaveTo="opacity-0">
+          enterTo="opacity-100">
         <ProgressBar duration={duration} secondsLeft={secondsLeft} />
         </Transition>
-      </div>
+      </div> */}
 
       {!meditating && <div>
         <footer className="p-4 text-left text-gray-500 text-source-sans w-screen">
@@ -122,6 +118,19 @@ export default function Home() {
           </p>
         </footer>
       </div>}
-    </div>
+    </PageWrapper>
   )
 }
+
+const PageWrapper = styled.div`
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justofy-content: space-between;
+`
+
+const PageContent = styled.main`
+  flex: 1;
+  display: grid;
+  place-items: center;
+`

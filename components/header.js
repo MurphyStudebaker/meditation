@@ -1,16 +1,17 @@
 import MeditateModal from './modal.js'
 import PreferencesModal from './preferences'
+import styled from 'styled-components'
 export default function Header ({ bell, setBell, ambience, setAmbience }) {
     return (
-        <header className="relative text-source-sans flex flex-row justify-between min-w-full">
-          <div>
+        <HeaderWrapper className="text-source-sans">
           <MeditateModal />
-
-          </div>
-          <div>
           <PreferencesModal bell={bell} setBell={setBell} ambience={ambience} setAmbience={setAmbience} />
-
-          </div>
-      </header>
+      </HeaderWrapper>
     )
 }
+
+const HeaderWrapper = styled.header`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+`
