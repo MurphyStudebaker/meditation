@@ -40,14 +40,14 @@ const Option = styled.div`
   position: relative;
   font-size: 2rem;
   width: 2em;
-  border: 1px solid black;
+  background-color: rgb(17,24,39);
   border-radius: calc(2 * var(--spacing));
   padding: var(--spacing) calc(var(--spacing) * 2);
 
   // since we hid the radio buttons, add back in
   // visual cue for in focus selection
   &:focus-within {
-      border: 2px solid green;
+      outline: 2px solid #fefefe;
   }
 `
 
@@ -60,7 +60,11 @@ const HiddenInput = styled.input`
   // toggle this to show/hide
   opacity: 0;
 
+  & + label {
+      color: grey;
+  }
+
   &:checked + label {
-      color: red;
+      color: white;
   }
 `

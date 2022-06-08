@@ -12,6 +12,7 @@ import Start from '../components/startButton'
 import Visualizer from '../components/visualizer'
 import ProgressBar from '../components/progress'
 import Header from '../components/header'
+import Footer from '../components/footer'
 
 export default function Home() {
   const [ duration, setDuration ] = useStickyState(3, 'meditation-duration')
@@ -111,12 +112,7 @@ export default function Home() {
       </div> */}
 
       {!meditating && <div>
-        <footer className="p-4 text-left text-gray-500 text-source-sans w-screen">
-          <p>
-            This site is <a href='https://github.com/MurphyStudebaker/meditation' className="hover:underline">open source</a>. 
-          <a href='http://www.buildwithpride.org' className="hover:underline"> Built with 🏳️‍🌈 </a>
-          </p>
-        </footer>
+        <Footer />
       </div>}
     </PageWrapper>
   )
@@ -124,9 +120,12 @@ export default function Home() {
 
 const PageWrapper = styled.div`
   height: 100%;
+  padding: var(--spacing) calc(2*var(--spacing));
   display: flex;
   flex-direction: column;
-  justofy-content: space-between;
+  justify-content: space-between;
+  background-color: var(--color-primary);
+  color: #fefefe;
 `
 
 const PageContent = styled.main`

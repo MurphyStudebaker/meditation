@@ -1,7 +1,14 @@
 html, body {
     height: 100%;
+    margin: 0;
+}
+
+*, *::before, *::after {
+    box-sizing: border-box;
 }
 
 #__next {
     height: 100%;
+    --spacing: 8px;
+    --color-primary: #14233e;
 }
