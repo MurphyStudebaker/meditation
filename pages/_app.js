@@ -1,101 +1,80 @@
-import '../styles/globals.css'
-import styled from 'styled-components'
+import "../styles/globals.css";
+import styled, { createGlobalStyle } from "styled-components";
 
 function MyApp({ Component, pageProps }) {
   return (
-    <Global>
-    <Component {...pageProps} />
-  </Global> )
+    <>
+      <GlobalStyle />
+      <Component {...pageProps} />
+    </>
+  );
 }
 
-const Global = styled.div`
-height: 100%;
-.text-source-sans {
-  font-family: "Source Sans Pro", sans-serif;
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
+const GlobalStyle = createGlobalStyle`
+  html {
+    --spacing: 8px;
+    --color-primary: #14233e;
+    --color-darker: rgb(17, 24, 39);
+    --white: #fefefe;
+    --white-lighter: hsla(0, 100%, 100%, 0.8);
+    --radius: 8px;
   }
 
-  to {
-    opacity: 1;
+  body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Source Sans Pro", sans-serif;
+    font-size: 1.1rem;
+    color: var(--white-lighter);
+    background-color: var(--color-primary);
   }
-}
 
-@keyframes fadeOut {
-  from {
-    opacity: 1;
-  }
-
-  to {
-    opacity: 0;
-  }
-}
-
-/* TOKENS */
-html {
-  --spacing: 8px;
-  --color-primary: #14233e;
-}
-
-/* GLOBAL STYLES */
-*,
-*:before,
-*:after {
-  box-sizing: border-box;
-  line-height: 1.5;
-  -webkit-font-smoothing: antialiased;
-}
-
-#root {
   /*
-    Create a stacking context, without a z-index.
-    This ensures that all portal content (modals and tooltips) will
-    float above the app.
+  Josh's Custom CSS Reset
+  https://www.joshwcomeau.com/css/custom-css-reset/
   */
-  isolation: isolate;
-}
+  *, *::before, *::after {
+    box-sizing: border-box;
+  }
+  * {
+    margin: 0;
+  }
+  html, body, #__next {
+    height: 100%;
+  }
+  body {
+    -webkit-font-smoothing: antialiased;
+  }
+  img, picture, video, canvas, svg {
+    display: block;
+    max-width: 100%;
+  }
+  input, button, textarea, select {
+    font: inherit;
+  }
+  #root, #__next {
+    isolation: isolate;
+  }
 
-html {
-  /*
-    Silence the warning about missing Reach Dialog styles
+  /* 
+    Universally Applicable Element Styles
   */
-  --reach-dialog: 1;
-}
+  button {
+    background-color: transparent;
+    color: inherit;
+    border: none;
+  }
 
-html,
-body,
-#root {
-  height: 100%;
-}
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
 
-body {
-  background-color: var(--color-gray-100);
-  font-family: "Crimson Pro", sans-serif;
-}
+  a:hover {
+    text-decoration: underline;
+    color: var(--white);
+  }
+`;
 
-/*
-  Remove default button styles. We'll provide our own at the
-  component level
-*/
-button {
-  display: block;
-  margin: 0;
-  padding: 0;
-  border: none;
-  background: transparent;
-  cursor: pointer;
-  text-align: left;
-  font: inherit;
-  color: inherit;
-}
-
-a {
-  color: inherit;
-  text-decoration: none;
-}
-`
-
-export default MyApp
+export default MyApp;
