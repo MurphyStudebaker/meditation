@@ -1,17 +1,15 @@
 import Head from "next/head";
 import styled from "styled-components";
 import React, { useState, useEffect } from "react";
-import { Transition } from "@headlessui/react";
 import { useStickyState } from "../hooks/useStickyState";
 
 import NumberSelect from "../components/numberSelect";
 import useSound from "use-sound";
 import bellSfx from "../public/bell.mp3";
 import Start from "../components/startButton";
-import Visualizer from "../components/visualizer";
-import ProgressBar from "../components/progress";
 import Header from "../components/header";
 import Footer from "../components/footer";
+import Spacer from "../components/helpers";
 
 export default function Home() {
   const [duration, setDuration] = useStickyState(3, "meditation-duration");
@@ -84,53 +82,16 @@ export default function Home() {
       />
 
       <PageContent>
-        {/* Displays when not meditating */}
-        <Transition show={!meditating}>
-          <Transition.Child
-            appear="true"
-            enter="transition-opacity ease-linear duration-1000"
-            enterFrom="opacity-0"
-            enterTo="opacity-100"
-            leave="transition-opacity ease-linear duration-1000"
-            leaveFrom="opacity-100"
-            leaveTo="opacity-0"
-          >
-            <div id="spacer" className="h-24 md:h-40"></div>
-            <h1 className="text-gray-300 text-source-sans w-96 text-left text-6xl">
-              I want to meditate for
-              <NumberSelect selected={duration} onChange={changeSelection} />
-              minutes.
-            </h1>
-            <Start start={startTimer} />
-          </Transition.Child>
-        </Transition>
+        <h1>
+          I want to meditate for
+          <NumberSelect selected={duration} onChange={changeSelection} />
+          minutes.
+        </h1>
+        <Spacer height={20} />
+        <Start start={startTimer} />
       </PageContent>
-      {/* 
-      <Transition
-          show={showVisualizer}
-          appear="false"
-          enter="delay-1000 transition-opacity ease-linear duration-1000"
-          enterFrom="opacity-0"
-          enterTo="opacity-100">
-        <Visualizer meditating={showVisualizer}/>
-      </Transition>
 
-      <div className="w-screen">
-        <Transition
-          show={meditating}
-          appear="false"
-          enter="delay-1000 transition-opacity ease-linear duration-1000"
-          enterFrom="opacity-0"
-          enterTo="opacity-100">
-        <ProgressBar duration={duration} secondsLeft={secondsLeft} />
-        </Transition>
-      </div> */}
-
-      {!meditating && (
-        <div>
-          <Footer />
-        </div>
-      )}
+      <Footer />
     </PageWrapper>
   );
 }
@@ -144,7 +105,6 @@ const PageWrapper = styled.div`
 `;
 
 const PageContent = styled.main`
-  flex: 1;
-  display: grid;
-  place-items: center;
+  font-size: 1.5rem;
+  align-self: center;
 `;

@@ -1,5 +1,5 @@
 import "../styles/globals.css";
-import styled, { createGlobalStyle } from "styled-components";
+import { createGlobalStyle } from "styled-components";
 
 function MyApp({ Component, pageProps }) {
   return (
