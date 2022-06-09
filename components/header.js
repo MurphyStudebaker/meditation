@@ -1,5 +1,4 @@
-import Modal from "./modal.js";
-import PreferencesModal from "./preferences";
+import Modal from "./Modal.js";
 import styled from "styled-components";
 export default function Header({ bell, setBell }) {
   return (

@@ -3,12 +3,12 @@ import styled from "styled-components";
 import React, { useState, useEffect } from "react";
 import { useStickyState } from "../hooks/useStickyState";
 
-import NumberSelect from "../components/numberSelect";
+import NumberSelect from "../components/NumberSelect";
 import useSound from "use-sound";
 import bellSfx from "../public/bell.mp3";
-import Start from "../components/startButton";
-import Header from "../components/header";
-import Footer from "../components/footer";
+import Start from "../components/StartButton";
+import Header from "../components/Header";
+import Footer from "../components/Footer";
 import Spacer from "../components/helpers";
 
 export default function Home() {
@@ -19,10 +19,6 @@ export default function Home() {
   const [showVisualizer, setShowVisualizer] = useState(false);
   const [playBell] = useSound(bellSfx);
   const [bell, setBell] = useStickyState(true, "meditation-bell-on");
-  const [ambience, setAmbience] = useStickyState(
-    true,
-    "meditation-ambience-on"
-  );
 
   useEffect(() => {
     let myInterval = setInterval(() => {
@@ -74,12 +70,7 @@ export default function Home() {
         />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Header
-        bell={bell}
-        setBell={setBell}
-        ambience={ambience}
-        setAmbience={setAmbience}
-      />
+      <Header bell={bell} setBell={setBell} />
 
       <PageContent>
         <h1>

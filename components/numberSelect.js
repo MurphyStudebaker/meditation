@@ -6,24 +6,21 @@ export default function NumberSelect({ selected, onChange }) {
 
   return (
     <Wrapper>
-      <NumberList>
+      <DurationForm>
         {timeOptions.map((o, i) => (
-          <Option
-            key={i}
-            className={`${selected === o ? "selected" : ""}`}
-            onClick={(e) => onChange(o)}
-          >
+          <Option key={i}>
             <HiddenInput
               id={o}
               type="radio"
               name="duration"
               value={o}
+              onChange={(e) => onChange(o)}
               checked={selected === o}
             />
             <label for={o}>{o}</label>
           </Option>
         ))}
-      </NumberList>
+      </DurationForm>
     </Wrapper>
   );
 }
@@ -35,7 +32,7 @@ const Wrapper = styled.div`
   margin: var(--spacing) 0px;
 `;
 
-const NumberList = styled.form`
+const DurationForm = styled.form`
   display: flex;
   flex-direction: row;
   align-items: center;
