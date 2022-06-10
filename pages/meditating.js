@@ -3,25 +3,31 @@ import Visualizer from "../components/Visualizer";
 import Progress from "../components/progress";
 import { useEffect, useState } from "react";
 import useDuration from "../context/DurationContext";
+import { useRouter } from "next/router";
 
 export default function Meditating({}) {
   const { duration } = useDuration();
+  const router = useRouter();
   const [secondsLeft, setSeconds] = useState(duration * 60);
+
+  useEffect(() => {
+    if (secondsLeft === 0) {
+      router.push("/");
+    }
+  }, [secondsLeft]);
+
   useEffect(() => {
     let myInterval = setInterval(() => {
-      //   if (secondsLeft === 30) {
-      //     // wind down bell at 30 seconds remaining
-      //     if (bell) {
-      //       playBell();
-      //     }
+      // if (secondsLeft === 30) {
+      //   // wind down bell at 30 seconds remaining
+      //   if (bell) {
+      //     playBell();
       //   }
+      // }
       if (secondsLeft > 0) {
         setSeconds(secondsLeft - 1);
       } else {
         clearInterval(myInterval);
-        // setShowVisualizer(false);
-        // stop();
-        // setTimeout(setMeditating(false), 4800);
       }
     }, 1000);
     return () => {
