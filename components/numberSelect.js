@@ -1,19 +1,74 @@
-import { useState } from "react"
+import styled from "styled-components";
+// https://www.sarasoueidan.com/blog/inclusively-hiding-and-styling-checkboxes-and-radio-buttons/
 
-export default function NumberSelect ({ selected, onChange }) {
-    const [ showTimeOptions, setShowOptions ] = useState(false)
-    const timeOptions = [1,3,5,10,15]
+export default function NumberSelect({ selected, onChange }) {
+  const timeOptions = [1, 3, 5, 10, 15];
 
-    return (
-        <div className='flex justify-start items-center'>
-            <ul className="flex items-center text-center">
-                {
-                    timeOptions.map((o, i) => (
-                        <li key={i} className={`transition hover:text-white duration-300 px-4 py-2 mx-2 text-center cursor-pointer rounded-2xl ${selected === o ? "font-bold text-white bg-transparent" : "text-2xl text-gray-300 bg-gray-900"}`} onClick={e => { setShowOptions(!showTimeOptions); onChange(o)} }>{o}</li>
-                    ))
-                }
-            </ul>
-        </div>
-        
-    )
+  return (
+    <Wrapper>
+      <DurationForm>
+        {timeOptions.map((o, i) => (
+          <Option key={i}>
+            <HiddenInput
+              id={o}
+              type="radio"
+              name="duration"
+              value={o}
+              onChange={(e) => onChange(o)}
+              checked={selected === o}
+            />
+            <label htmlFor={o}>{o}</label>
+          </Option>
+        ))}
+      </DurationForm>
+    </Wrapper>
+  );
 }
+
+const Wrapper = styled.div`
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  margin: var(--spacing) 0px;
+`;
+
+const DurationForm = styled.form`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  text-align: center;
+  gap: var(--spacing);
+`;
+
+const Option = styled.div`
+  position: relative;
+  font-size: 2rem;
+  width: 2em;
+  background-color: var(--color-darker);
+  border-radius: var(--radius);
+  padding: var(--spacing) calc(var(--spacing) * 2);
+
+  // since we hid the radio buttons, add back in
+  // visual cue for in focus selection
+  &:focus-within {
+    outline: 2px solid #fefefe;
+  }
+`;
+
+const HiddenInput = styled.input`
+  position: absolute;
+  width: 1em;
+  height: 1em;
+  top: 1em;
+
+  // toggle this to show/hide
+  opacity: 0;
+
+  & + label {
+    color: grey;
+  }
+
+  &:checked + label {
+    color: white;
+  }
+`;
