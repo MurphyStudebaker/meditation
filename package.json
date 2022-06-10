@@ -17,7 +17,8 @@
     "react-dom": "^17.0.1",
     "styled-components": "^5.3.3",
     "tailwindcss": "^2.0.2",
-    "use-sound": "^2.2.0"
+    "use-sound": "^2.2.0",
+    "use-timer": "^2.0.1"
   },
   "devDependencies": {
     "babel-plugin-styled-components": "^1.12.0",

@@ -1,18 +1,22 @@
-import styled from 'styled-components'
+import styled from "styled-components";
 
-export default function ProgressBar ({ duration, minutesLeft, secondsLeft }) {
-    return (
-            <ProgressWrapper className="bg-gray-700">
-                <Bar style={{ "--progress": `${(1 - (secondsLeft / (duration*60)))*100}%` }} className='bg-gray-900'/>
-            </ProgressWrapper>
-    )
+export default function Progress({ duration, secondsLeft }) {
+  return (
+    <ProgressWrapper>
+      <Bar
+        style={{
+          "--progress": `${(1 - secondsLeft / (duration * 60)) * 100}%`,
+        }}
+      />
+    </ProgressWrapper>
+  );
 }
 
 const ProgressWrapper = styled.div`
-  width: full; 
+  width: 100%;
   height: 20px;
   position: relative;
-`
+`;
 
 const Bar = styled.div`
   height: 20px;
@@ -20,11 +24,7 @@ const Bar = styled.div`
   position: absolute;
   bottom: 0;
   left: 0;
-  clip-path: polygon(
-      0% 0%,
-      var(--progress) 0%,
-      var(--progress) 100%,
-      0% 100%
-  );
+  background-color: var(--color-darker);
+  clip-path: polygon(0% 0%, var(--progress) 0%, var(--progress) 100%, 0% 100%);
   transition: clip-path 1s linear;
-`
+`;

@@ -1,12 +1,16 @@
 import "../styles/globals.css";
 import { createGlobalStyle } from "styled-components";
+import { DurationContext } from "../context/DurationContext";
+import { useStickyState } from "../hooks/useStickyState";
 
 function MyApp({ Component, pageProps }) {
+  const [duration, setDuration] = useStickyState(3, "meditation-duration");
+
   return (
-    <>
+    <DurationContext.Provider value={{ duration, setDuration }}>
       <GlobalStyle />
       <Component {...pageProps} />
-    </>
+    </DurationContext.Provider>
   );
 }
 

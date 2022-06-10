@@ -17,7 +17,7 @@ export default function NumberSelect({ selected, onChange }) {
               onChange={(e) => onChange(o)}
               checked={selected === o}
             />
-            <label for={o}>{o}</label>
+            <label htmlFor={o}>{o}</label>
           </Option>
         ))}
       </DurationForm>

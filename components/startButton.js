@@ -1,6 +1,6 @@
 import Link from "next/link";
 import styled from "styled-components";
-export default function Start({ start }) {
+export default function Start() {
   return (
     <Link href="/meditating" passHref>
       <StyledLink>I'm ready to begin ➜</StyledLink>
