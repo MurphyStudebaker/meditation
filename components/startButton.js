@@ -1,9 +1,9 @@
 import Link from "next/link";
 import styled from "styled-components";
-export default function Start() {
+export default function Start({ handleClick }) {
   return (
     <Link href="/meditating" passHref>
-      <StyledLink>I'm ready to begin ➜</StyledLink>
+      <StyledLink onClick={handleClick}>I'm ready to begin ➜</StyledLink>
     </Link>
   );
 }

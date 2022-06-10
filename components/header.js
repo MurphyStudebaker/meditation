@@ -14,7 +14,7 @@ export default function Header({ bell, setBell }) {
         </p>
       </Modal>
       <Modal label="preferences">
-        <div className="text-white flex flex-row justify-start gap-2 ">
+        <SoundButton onClick={() => setBell(!bell)}>
           {bell ? (
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -42,12 +42,16 @@ export default function Header({ bell, setBell }) {
               />
             </svg>
           )}
-          <p onClick={() => setBell(!bell)}>Starting Bell</p>
-        </div>
+          <p>Starting Bell</p>
+        </SoundButton>
       </Modal>
     </HeaderWrapper>
   );
 }
+
+const SoundButton = styled.button`
+  display: flex;
+`;
 
 const HeaderWrapper = styled.header`
   display: flex;

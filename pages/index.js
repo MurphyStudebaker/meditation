@@ -40,7 +40,7 @@ export default function Home() {
           minutes.
         </h1>
         <Spacer height={20} />
-        <Start />
+        <Start handleClick={playBell} />
       </PageContent>
 
       <Footer />

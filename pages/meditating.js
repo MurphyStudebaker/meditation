@@ -5,9 +5,8 @@ import { useEffect, useState } from "react";
 import useDuration from "../context/DurationContext";
 
 export default function Meditating({}) {
-  const { duration, setDuration } = useDuration();
+  const { duration } = useDuration();
   const [secondsLeft, setSeconds] = useState(duration * 60);
-
   useEffect(() => {
     let myInterval = setInterval(() => {
       //   if (secondsLeft === 30) {
